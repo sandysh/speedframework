@@ -11,7 +11,9 @@
     <title>{{getenv('APP_NAME')}}</title>
 </head>
 <body>
-
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">{{getenv('APP_NAME')}}</a>
+</nav>
 @yield('content')
 
 <!-- Optional JavaScript -->

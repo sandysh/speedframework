@@ -11,7 +11,9 @@
     <title><?php echo e(getenv('APP_NAME')); ?></title>
 </head>
 <body>
-
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#"><?php echo e(getenv('APP_NAME')); ?></a>
+</nav>
 <?php echo $__env->yieldContent('content'); ?>
 
 <!-- Optional JavaScript -->
