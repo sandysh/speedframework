@@ -8,11 +8,11 @@ class Database {
     function __construct() {
     $capsule = new Capsule;
     $capsule->addConnection([
-     'driver' => getenv('DBDRIVER'),
-     'host' => getenv('DBHOST'),
-     'database' => getenv('DBNAME'),
-     'username' => getenv('DBUSER'),
-     'password' => getenv('DBPASS'),
+     'driver' => getenv('DB_DRIVER'),
+     'host' => getenv('DB_HOST'),
+     'database' => getenv('DB_NAME'),
+     'username' => getenv('DB_USER'),
+     'password' => getenv('DB_PASS'),
      'charset' => 'utf8',
      'collation' => 'utf8_unicode_ci',
      'prefix' => '',

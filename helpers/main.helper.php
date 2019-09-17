@@ -1,5 +1,20 @@
 <?php
 use Core\Load;
+
+if (!function_exists('dd')) {
+    function dd()
+    {
+        $args = func_get_args();
+        foreach ($args as $arg)
+        {
+            echo "<pre>";
+            echo json_encode($arg);
+            echo "</pre>";
+        }
+       die();
+    }
+}
+
 if (!function_exists('return_response')) { 
 function response($data)
     {
@@ -13,7 +28,7 @@ if (!function_exists('view')) {
     function view($view,$data = null)
     {
         $load = new Load();
-        $load::view($view, $data = null);
+        $load::view($view, $data);
     }
 }
 

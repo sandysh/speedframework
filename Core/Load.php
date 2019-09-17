@@ -10,6 +10,7 @@ class Load
     public static function view($view, $data=null)
     {
         $blade = new Blade('views', 'cache');
+
         if($data){
             echo $blade->make($view, $data);
         } else {

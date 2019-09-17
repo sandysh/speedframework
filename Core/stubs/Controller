@@ -1,0 +1,15 @@
+<?php
+use App\Controllers\Controller;
+/**
+*
+*/
+class {ControllerName} extends Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+}
+
+

@@ -1,0 +1,35 @@
+<?php
+
+//var_dump($argv);
+
+if($argv[1] === 'make' && $argv[2] === 'migration')
+{
+    echo $output = shell_exec('vendor/bin/phinx create ' . $argv[3]);
+}
+
+if($argv[1] === 'migrate' && $argv[2] === 'development')
+{
+    echo $output = shell_exec('vendor/bin/phinx migrate -e ' . $argv[2]);
+}
+
+if($argv[1] === 'make' && $argv[2] === 'model')
+{
+    $modelName = 'app/Models/'.$argv[3].'.php';
+    copy('Core/stubs/Model', $modelName);
+    $str=file_get_contents($modelName);
+    $str=str_replace("{ModelName}", $argv[3],$str);
+    file_put_contents($modelName, $str);
+    echo "Model $argv[3] Created Successfully \n";
+}
+
+if($argv[1] === 'make' && $argv[2] === 'controller')
+{
+    $controllerName = 'app/Controllers/'.$argv[3].'.php';
+    copy('Core/stubs/Controller', $controllerName);
+    $str=file_get_contents($controllerName);
+    $str=str_replace("{ControllerName}", $argv[3],$str);
+    file_put_contents($controllerName, $str);
+    echo "Controller $argv[3] Created Successfully \n";
+}
+
+?>

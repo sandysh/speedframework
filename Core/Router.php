@@ -6,54 +6,35 @@ class Router
 
     protected $all_url = [];
 
+    protected $method;
+
     function __construct()
     {
-
+        $this->method = $_SERVER['REQUEST_METHOD'];
     }
 
-    public static function load($routes)
+    public function get($url, $routes)
     {
-        require $routes;
-
-        $router = new static;
-
-        $uri = trim($_SERVER['REQUEST_URI'],'/');
-
-        $router->redirect($uri,$routes);
-    }
-
-    public function test()
-    {
-        $uri = trim($_SERVER['REQUEST_URI'],'/');
-        die(var_dump($uri));
-    }
-
-    public static function get($url, $routes)
-    {
-        $router = new static;
+        if(!$this->method === "GET"){
+            $this->notFoundException('Route method mismatch exception');
+        }
         $uri = trim($_SERVER['REQUEST_URI'],'/');
         if($url === $uri)
         {
-            $router->redirectMethod($uri, $routes, $url);
+            $this->redirectMethod($uri, $routes);
         }
     }
 
-    public static function post($url, $routes)
+    public function post($url, $routes)
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-        $router = new static;
-        if($method === 'POST')
-        {
+        if(!$this->method === "POST"){
+            $this->notFoundException('Route method mismatch exception');
+        }
             $uri = trim($_SERVER['REQUEST_URI'],'/');
             if($url === $uri)
             {
-                $router->redirectMethod($uri, $routes, $url);
+                $this->redirectMethod($uri, $routes);
             }
-        }
-        else {
-            $router->notFoundException('Method mismatch');
-        }
-
     }
 
     public function notFoundException($msg)
@@ -123,3 +104,5 @@ class Router
         }
     }
 }
+
+$router = new Router();

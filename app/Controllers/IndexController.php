@@ -1,9 +1,12 @@
 <?php
 use Core\Controller;
 use Core\Request;
-use App\Models\User;
+use App\Models\Post;
+use App\Models\Menu;
+use App\Models\Setting;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+
 /**
 * 
 */
@@ -16,20 +19,25 @@ class IndexController extends Controller
 
     public function index()
     {
-        // $user = User::all();
+        $posts = Post::all();
+        $menus = Menu::all();
+        $title = Setting::where('option','title')->first();
+        $tagline = Setting::where('option','tagline')->first();
         $data = [
-        'title'=> "index page",
-        'body' => "Welcome to Speed framework",
+            'title'=> $title->value,
+            'body' => "Welcome to Speed framework",
+            'posts' => $posts,
+            'menus' => $menus,
+            'tagline' => $tagline->value
         ];
 
-        // return_response($data);
 //        $this->load->view('index',$data);
         return view('index',$data);
     }
     
-    public function postData()
+    public function tour()
     {
-        dd(Request::all());
+        return view('tour');
     }
 }
 
