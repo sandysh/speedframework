@@ -9,14 +9,13 @@ if (!function_exists('dd')) {
         foreach ($args as $arg)
         {
             echo "<pre>";
-            echo json_encode($arg);
-            echo "</pre>";
+            var_dump($arg);
         }
        die();
     }
 }
 
-if (!function_exists('return_response')) { 
+if (!function_exists('response')) {
 function response($data)
     {
         echo "<pre>";
@@ -48,10 +47,10 @@ if (!function_exists('app_path')){
 }
 
 if (!function_exists('bcrypt')){
-    function bcrypt()
+    function bcrypt($password)
     {
         $bcrypt = new Bcrypt(15);
-        return $bcrypt->hash('password');
+        return $bcrypt->hash($password);
     }
 }
 

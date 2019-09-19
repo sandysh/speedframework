@@ -15,27 +15,29 @@ class Router
 
     public function get($url, $routes)
     {
-        if(!$this->method === "GET"){
+        if($this->method != "GET"){
             $this->notFoundException('Route method mismatch exception');
         }
         $uri = trim($_SERVER['REQUEST_URI'],'/');
+        $url = trim($url,'/');
         if($url === $uri)
         {
-            $this->redirectMethod($uri, $routes);
+            return $this->redirectMethod($uri, $routes);
         }
     }
 
     public function post($url, $routes)
     {
-        if(!$this->method === "POST"){
-            $this->notFoundException('Route method mismatch exception');
+        if($this->method != "POST"){
+            return $this->notFoundException('Route method mismatch exception');
         }
-            $uri = trim($_SERVER['REQUEST_URI'],'/');
-            if($url === $uri)
-            {
-                $this->redirectMethod($uri, $routes);
-            }
+        $uri = trim($_SERVER['REQUEST_URI'],'/');
+        if($url === $uri)
+        {
+            return $this->redirectMethod($uri, $routes);
+        }
     }
+
 
     public function notFoundException($msg)
     {
@@ -47,7 +49,7 @@ class Router
         $data = explode('@', $routes);
         $controller = $data[0];
         $method = $data[1];
-        require './app/Controllers/'.$controller.'.php';
+        require_once './app/Controllers/'.$controller.'.php';
         $obj = new $controller;
         $uri = explode('/', $uri); //explode entire URI to get the parameter if passed
         $parameters = [];

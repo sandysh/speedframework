@@ -1,6 +1,15 @@
 <?php
 
-//var_dump($argv);
+if($argv[1] === 'serve')
+{
+    if(isset($argv[2]) && $argv[2] === '--port')
+    {
+        shell_exec("php -S localhost:$argv[3] > /dev/null &");
+    } else {
+         shell_exec("php -S localhost:8000 > /dev/null &");
+    }
+
+}
 
 if($argv[1] === 'make' && $argv[2] === 'migration')
 {

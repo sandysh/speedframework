@@ -3,7 +3,6 @@ use Core\Controller;
 use Core\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
 /**
 * 
 */
@@ -16,7 +15,6 @@ class IndexController extends Controller
 
     public function index()
     {
-
         $data = [
             'title'=> 'site title',
         ];
@@ -28,6 +26,11 @@ class IndexController extends Controller
     public function tour()
     {
         return view('tour');
+    }
+
+    public function test()
+    {
+        return response('sasasasa');
     }
 }
 
