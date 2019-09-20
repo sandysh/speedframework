@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 */
 class IndexController extends Controller
 {
+    public $request;
+
     function __construct()
     {
         parent::__construct();
@@ -23,15 +25,11 @@ class IndexController extends Controller
         return view('index',$data);
     }
     
-    public function tour()
+    public function dashboard()
     {
-        return view('tour');
+        return view('user.dashboard');
     }
 
-    public function test()
-    {
-        return response('sasasasa');
-    }
 }
 
 

@@ -3,38 +3,37 @@
 class Router
 {
     protected $route;
-
-    protected $all_url = [];
-
     protected $method;
-
     function __construct()
     {
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
 
-    public function get($url, $routes)
+    public static function get($url, $routes)
     {
-        if($this->method != "GET"){
-            $this->notFoundException('Route method mismatch exception');
-        }
+        $router = new static();
+//        if($router->method != "GET"){
+//            $router->notFoundException('Route method mismatch exception');
+//        }
         $uri = trim($_SERVER['REQUEST_URI'],'/');
         $url = trim($url,'/');
         if($url === $uri)
         {
-            return $this->redirectMethod($uri, $routes);
+            return $router->redirectMethod($uri, $routes);
         }
     }
 
-    public function post($url, $routes)
+    public static function post($url, $routes)
     {
-        if($this->method != "POST"){
-            return $this->notFoundException('Route method mismatch exception');
-        }
+        $router = new static();
+//        if($router->method != "POST"){
+//            return $router->notFoundException('Route method mismatch exception');
+//        }
         $uri = trim($_SERVER['REQUEST_URI'],'/');
+        $url = trim($url,'/');
         if($url === $uri)
         {
-            return $this->redirectMethod($uri, $routes);
+            return $router->redirectMethod($uri, $routes);
         }
     }
 
@@ -106,5 +105,3 @@ class Router
         }
     }
 }
-
-$router = new Router();

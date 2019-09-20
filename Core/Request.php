@@ -5,11 +5,13 @@ namespace Core;
 */
 class Request
 {
-    protected $request;
-    
+
     function __construct()
     {
-
+        $requests = $_REQUEST;
+        foreach ($requests as $key => $req){
+            $this->{$key} = $req;
+        }
     }
     
 

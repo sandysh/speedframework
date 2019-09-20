@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Jenssegers\Blade\Blade;
+use Core\Session;
 /**
 * 
 */

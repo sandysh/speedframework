@@ -1,4 +1,5 @@
 <?php
+
 use Core\Load;
 use Core\Bcrypt;
 
@@ -66,6 +67,27 @@ if (!function_exists('showAutoLoadedFiles')){
     function showAutoLoadedFiles()
     {
        return get_included_files();
+    }
+}
+if (!function_exists('redirect')){
+    function redirect($url)
+    {
+       return header("Location: $url");
+    }
+}
+if (!function_exists('back')){
+    function back()
+    {
+        $referrer = $_SERVER['HTTP_REFERER'];
+       return header("Location: $referrer");
+    }
+}
+
+
+if (!function_exists('flash')){
+    function flash($type, $msg)
+    {
+
     }
 }
 

@@ -4,8 +4,8 @@ use Core\Load;
 class Controller
 {
     protected $load;
-    
-    protected $request;
+
+    protected $flash;
         
     function __construct()
     {

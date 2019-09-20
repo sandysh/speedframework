@@ -4,6 +4,6 @@
 * 
 */
 
- $router->get('','IndexController@index');
- $router->get('/tour','IndexController@tour');
- $router->get('/test','IndexController@test');
+ Router::get('/','LoginController@index');
+ Router::post('/authenticate','LoginController@authenticate');
+ Router::get('/dashboard','IndexController@dashboard');

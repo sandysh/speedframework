@@ -1,6 +1,6 @@
 <?php
  
-namespace App\Models; 
+namespace Core;
 use Illuminate\Database\Capsule\Manager as Capsule;
  
 class Database {
