@@ -20,10 +20,22 @@ class Session{
         } return false;
     }
 
-    public static function get($type)
+    public static function show($type)
     {
         echo $_SESSION[$type];
         unset($_SESSION[$type]);
+    }
+
+    public static function put($index,$data)
+    {
+        $_SESSION[$index] = $data;
+    }
+
+    public static function get($index = null)
+    {
+        if ($index != null){
+            return $_SESSION[$index];
+        } return $_SESSION;
     }
 
 }

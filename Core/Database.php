@@ -1,11 +1,11 @@
 <?php
  
 namespace Core;
-use Illuminate\Database\Capsule\Manager as Capsule;
- 
+use \Illuminate\Database\Capsule\Manager as Capsule;
+
 class Database {
- 
-    function __construct() {
+    function __construct()
+    {
     $capsule = new Capsule;
     $capsule->addConnection([
      'driver' => getenv('DB_DRIVER'),
@@ -17,8 +17,10 @@ class Database {
      'collation' => 'utf8_unicode_ci',
      'prefix' => '',
     ]);
+
+    $capsule->setAsGlobal();
     // Setup the Eloquent ORM… 
     $capsule->bootEloquent();
 }
- 
+
 }

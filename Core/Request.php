@@ -17,12 +17,7 @@ class Request
 
     public static function get($variable)
     {
-        return $_GET[$variable];
-    }
-
-    public static function post($variable)
-    {
-        return $_POST[$variable];
+        return $_REQUEST[$variable];
     }
     
     public static function all()

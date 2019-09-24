@@ -27,7 +27,7 @@
                     <div class="col-md-4 offset-3">
                         @if(Core\Session::has('error'))
                         <div class="alert alert-danger" role="alert">
-                           {{Core\Session::get('error')}}
+                           {{Core\Session::show('error')}}
                         </div>
                         @endif
                         <div class="card">

@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\Load;
+
 class Controller
 {
     protected $load;

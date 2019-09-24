@@ -29,11 +29,19 @@ class LoginController extends Controller
             Session::flash('error','Email address not valid');
             return back();
         }
-        if ($password != $user->password){
+        $user = $user->makeVisible('password');
+        if ($password != $user->password ){
             Session::flash('error','Password mismatch');
             return redirect('/');
         }
-
+        $user = [
+            'id' => $user->id,
+            'email' => $user->email,
+            'username'=> $user->username,
+            'first_name'=> $user->first_name,
+            'last_name'=> $user->last_name,
+        ];
+        Session::put('user',$user);
         return redirect('/dashboard');
     }
 
