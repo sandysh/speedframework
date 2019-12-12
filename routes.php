@@ -5,7 +5,6 @@
 */
 
  Router::get('/','LoginController@index');
- Router::get('','LoginController@index');
  Router::get('/login','LoginController@index');
  Router::get('/logout','LoginController@logout');
  Router::post('/authenticate','LoginController@authenticate');

@@ -4,10 +4,15 @@ class Router
 {
     public static function get($url, $routes)
     {
-//        var_dump($url);
         $router = new static();
         $uri = trim($_SERVER['REQUEST_URI'],'/');
+        if ($uri === ""){
+            $uri = "/";
+        }
         $url = trim($url,'/');
+        if ($url === ""){
+            $url = "/";
+        }
          $flag = strpos(file_get_contents("./routes.php"),$uri);
          if( $flag === false) {
             

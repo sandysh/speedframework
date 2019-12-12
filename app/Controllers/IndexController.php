@@ -6,6 +6,7 @@ use Core\Auth;
 use Core\Session;
 use App\Models\Attendance;
 use App\Models\User;
+use App\Models\Setting;
 /**
 * 
 */
@@ -41,6 +42,8 @@ class IndexController extends Controller
     
     public function punch()
     {
+        $settings = Setting::where('option','working_hours')->first();
+        $workingHours = (int)$settings->value;
         $today = $date = Carbon::today();
         $fullfilled = false;
         $punchCheck = Attendance::where('user_id', Auth::id())
@@ -52,13 +55,16 @@ class IndexController extends Controller
 
         $data = [
             'punchCheck' => $punchCheck,
-            'fullfilled' => $fullfilled
+            'fullfilled' => $fullfilled,
+            'workingHours' => $workingHours
         ];
         return view('user.punch',$data);
     }
 
     public function postPunch()
     {
+        $settings = Setting::where('option','working_hours')->first();
+        $workingHours = (int)$settings->value;
         $date = Carbon::now()->toDateString();
         $today = $date = Carbon::today();
         $time = Carbon::now()->format('H:i:s');
@@ -67,6 +73,11 @@ class IndexController extends Controller
                             ->first();
 
         if ($exists){
+            $diff = Carbon::parse($exists->punch_in)->diffInHours(Carbon::now()->format('H:i:s'));
+            if($diff < $workingHours){
+                Session::flash('warning','You cannot punch out before your working time');
+                return back();
+            }
             $updated = Attendance::where('user_id',Auth::id())
                 ->whereDate('created_at',$today)
                 ->update(['punch_out'=> $time]);

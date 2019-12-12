@@ -114,6 +114,16 @@
     </script>
 
 @endif
+@if(Core\Session::has('warning'))
+    <script>
+        var msg = '{{\Core\Session::show('warning')}}'
+        $.notify({
+            title: 'Warning',
+            message: msg,
+        },{type: 'warning'});
+    </script>
+
+@endif
 @stack('scripts')
 </body>
 </html>
