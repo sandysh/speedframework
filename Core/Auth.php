@@ -6,7 +6,9 @@ class Auth{
 
     function __construct()
     {
-
+        foreach($_SESSION['user'] as $key => $user){
+            $this->{$key} = $user;
+        }
     }
 
     public static function check()
@@ -24,6 +26,12 @@ class Auth{
     public static function id()
     {
         return Session::get('user')['id'];
+    }
+
+    public static function logout()
+    {
+        Session::destroy();
+        return redirect('/');
     }
 
 }

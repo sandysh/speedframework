@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Core\Auth;
 use Core\Session;
 use App\Models\Attendance;
+use App\Models\User;
 /**
 * 
 */
@@ -27,29 +28,31 @@ class IndexController extends Controller
             'title'=> 'site title',
         ];
 
-//        $this->load->view('index',$data);
         return view('index',$data);
     }
 
     public function dashboard()
     {
-        return view('index');
+        $user = User::with('roles.permissions')->whereId(Session::get('user')['id'])->first();
+        // return response($user->roles[0]->permissions);
+        $summaries = Attendance::where('user_id',auth()->id)->get();
+        return view('index',compact('summaries'));
     }
     
     public function punch()
     {
         $today = $date = Carbon::today();
-        $filfilled = false;
+        $fullfilled = false;
         $punchCheck = Attendance::where('user_id', Auth::id())
                                 ->whereDate('created_at', $today)
                                 ->first();
-        if ($punchCheck->punch_in != NULL && $punchCheck->punch_out !=NULL){
+        if ($punchCheck && $punchCheck->punch_in != NULL && $punchCheck->punch_out !='00:00:00'){
             $fullfilled = true;
         }
 
         $data = [
             'punchCheck' => $punchCheck,
-            'fulfilled' => $fullfilled
+            'fullfilled' => $fullfilled
         ];
         return view('user.punch',$data);
     }

@@ -34,7 +34,7 @@ class CreateAttendancesTable extends AbstractMigration
         $attendance = $this->table('attendances');
         $attendance->addColumn('user_id','integer')
             ->addColumn('punch_in','time')
-            ->addColumn('punch_out','time')
+            ->addColumn('punch_out','time',['default'=>'00:00:00'])
             ->addColumn('note','text')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime', ['null' => true])

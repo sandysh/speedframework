@@ -8,9 +8,8 @@
                     <div class="card-icon">
                         <i class="material-icons">content_copy</i>
                     </div>
-                    <p class="card-category">This Month Attendance</p>
-                    <h3 class="card-title">49/50
-                        <small>GB</small>
+                    <p class="card-category">Attendance</p>
+                    <h3 class="card-title">{{$summaries->count()}}/{{\Carbon\Carbon::now()->daysInMonth}}
                     </h3>
                 </div>
             </div>
@@ -21,8 +20,8 @@
                     <div class="card-icon">
                         <i class="material-icons">store</i>
                     </div>
-                    <p class="card-category">Leaves Remaining</p>
-                    <h3 class="card-title">$34,245</h3>
+                    <p class="card-category">Leaves</p>
+                    <h3 class="card-title">$34</h3>
                 </div>
             </div>
         </div>
@@ -32,7 +31,7 @@
                     <div class="card-icon">
                         <i class="material-icons">info_outline</i>
                     </div>
-                    <p class="card-category">Fixed Issues</p>
+                    <p class="card-category">Tasks</p>
                     <h3 class="card-title">75</h3>
                 </div>
             </div>
@@ -43,38 +42,50 @@
                     <div class="card-icon">
                         <i class="fa fa-twitter"></i>
                     </div>
-                    <p class="card-category">Followers</p>
+                    <p class="card-category">Bugs</p>
                     <h3 class="card-title">+245</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <h3>News Broadcast</h3>
-    <div class="list-group" style="background: white">
-        <a href="#" class="list-group-item list-group-item-action active">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small>3 days ago</small>
+    <div class="col-md-8">
+      <div class="card">
+          <div class="card-header card-header-text card-header-primary">
+            <div class="card-text">
+              <h4 class="card-title">Summary</h4>
             </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small>Donec id elit non mi porta.</small>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="text-muted">Donec id elit non mi porta.</small>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="text-muted">Donec id elit non mi porta.</small>
-        </a>
-    </div>
+          </div>
+          <div class="card-body">
+          <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Punched In</th>
+                                        <th>Punched Out</th>
+                                        <th>Note</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($summaries as $summary)
+                                    <tr>
+                                        <td>{{$summary->created_at->toDayDateTimeString()}}</td>
+                                        <td>{{\Carbon\Carbon::parse($summary->punch_in)->format('g:i:s a')}}</td>
+                                        <td>
+                                        @if($summary->punch_out != '00:00:00')
+                                        {{\Carbon\Carbon::parse($summary->punch_out)->format('g:i:s a')}}
+                                        @else
+                                        {{'---'}}
+                                        @endif
+                                        </td>
+                                        <td>{{$summary->note}}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+          </div>
+      </div>
+  </div>
+</div>
+
 @endsection

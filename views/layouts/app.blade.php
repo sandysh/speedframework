@@ -48,6 +48,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(auth()->check()){{auth()->username}}@endif
                                 <i class="material-icons">person</i>
                                 <p class="d-lg-none d-md-block">
                                     Account
@@ -57,7 +58,7 @@
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Log out</a>
+                                <a class="dropdown-item" href="/logout">Log out</a>
                             </div>
                         </li>
                         <!-- your navbar here -->
@@ -66,9 +67,6 @@
             </div>
         </nav>
 
-{{--        <div class="alert alert-danger" role="alert">--}}
-{{--            Punched in successfully--}}
-{{--        </div>--}}
             <div class="content">
                 <div class="container-fluid">
                     @yield('content')

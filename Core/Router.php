@@ -2,25 +2,22 @@
 
 class Router
 {
-    protected $route;
-    protected $method;
-    function __construct()
-    {
-        $this->method = $_SERVER['REQUEST_METHOD'];
-    }
-
     public static function get($url, $routes)
     {
+//        var_dump($url);
         $router = new static();
-//        if($router->method != "GET"){
-//            $router->notFoundException('Route method mismatch exception');
-//        }
         $uri = trim($_SERVER['REQUEST_URI'],'/');
         $url = trim($url,'/');
-        if($url === $uri)
-        {
-            return $router->redirectMethod($uri, $routes);
-        }
+         $flag = strpos(file_get_contents("./routes.php"),$uri);
+         if( $flag === false) {
+            
+             $router->notFoundException('Route not found exception');
+            
+         }
+         if($url === $uri)
+         {
+             return $router->redirectMethod($uri, $routes);
+         }
     }
 
     public static function post($url, $routes)
@@ -40,6 +37,7 @@ class Router
 
     public function notFoundException($msg)
     {
+        echo "<pre>";
         throw new Exception($msg);
     }
 

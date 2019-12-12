@@ -1,22 +1,17 @@
 <?php
 namespace Core;
-use Jenssegers\Blade\Blade;
 use Core\Session;
+use Core\Database;
 /**
 * 
 */
 class Load
-{   
+{ 
+    protected $db;
 
-    public static function view($view, $data=null)
+    function __construct($db)
     {
-        $blade = new Blade('views', 'cache');
-
-        if($data){
-            echo $blade->make($view, $data);
-        } else {
-            echo $blade->make($view);
-        }
+        $this->db = $db;
     }
 
 //    public function helper($helper)

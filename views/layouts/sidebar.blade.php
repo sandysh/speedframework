@@ -7,19 +7,36 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active  ">
-                <a class="nav-link" href="#0">
+            <li class="nav-item {{active('dashboard')}}">
+                <a class="nav-link" href="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item  ">
-                <a class="nav-link" href="#0">
-                    <i class="material-icons">dashboard</i>
+            <li class="nav-item {{active('punch')}}">
+                <a class="nav-link" href="/punch">
+                    <i class="material-icons">gavel</i>
                     <p>Punch In / Punch Out</p>
+                </a>
+            </li>
+            <li class="nav-item {{active('leave')}}">
+                <a class="nav-link" href="/leave">
+                    <i class="material-icons">dashboard</i>
+                    <p>Leave</p>
+                </a>
+            </li>
+            <li class="nav-item {{active('tasks')}}">
+                <a class="nav-link" href="/tasks">
+                    <i class="material-icons">check_box</i>
+                    <p>Tasks</p>
                 </a>
             </li>
             <!-- your sidebar here -->
         </ul>
     </div>
 </div>
+
+<?php 
+// $e = new Exception;
+// var_dump($e->getTraceAsString())
+?>

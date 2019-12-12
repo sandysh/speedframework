@@ -16,6 +16,10 @@ class User extends Model {
         'username', 'password', 'email','first_name','last_name'
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 
 }
  
