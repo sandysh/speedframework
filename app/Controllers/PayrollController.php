@@ -4,11 +4,16 @@ use Core\Controller;
 /**
 *
 */
-class {ControllerName} extends Controller
+class PayrollController extends Controller
 {
     function __construct()
     {
         parent::__construct();
+    }
+
+    public function index()
+    {
+        return view('admin.payroll.index');
     }
 
 }

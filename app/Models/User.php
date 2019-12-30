@@ -13,7 +13,7 @@ class User extends Model {
     ];
 
     protected $fillable = [
-        'username', 'password', 'email','first_name','last_name'
+        'username', 'password', 'email','first_name','last_name','status'
     ];
 
     public function roles()

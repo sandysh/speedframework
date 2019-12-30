@@ -1,4 +1,5 @@
 <?php
+namespace App\Controllers;
 use Core\Controller;
 use Core\Request;
 use Carbon\Carbon;

@@ -6,23 +6,36 @@ class Router
     {
         $router = new static();
         $uri = trim($_SERVER['REQUEST_URI'],'/');
-        if ($uri === ""){
-            $uri = "/";
+        $uri_segements = explode('/',$uri);
+        $url_segments = explode('/',$url);
+//        $flag = strpos(file_get_contents("./routes.php"),'user/status');
+        foreach($url_segments as $key => $segments){
+            if(strpos($segments,'{') !== false){
+                dump('yes');
+            } else {
+                dump('No');
+            }
         }
-        $url = trim($url,'/');
-        if ($url === ""){
-            $url = "/";
-        }
-         $flag = strpos(file_get_contents("./routes.php"),$uri);
-         if( $flag === false) {
-            
-             $router->notFoundException('Route not found exception');
-            
-         }
-         if($url === $uri)
-         {
-             return $router->redirectMethod($uri, $routes);
-         }
+//        if($url === $uri)
+//        {
+//            dd('url match');
+//            return $router->redirectMethod($uri, $routes);
+//        }
+//        if ($uri === ""){
+//            $uri = "/";
+//        }
+//        $url = trim($url,'/');
+//        if ($url === ""){
+//            $url = "/";
+//        }
+//        dd($uri, $url);
+
+//         if( $flag === false) {
+//
+//             $router->notFoundException('Route not found exception');
+//
+//         }
+
     }
 
     public static function post($url, $routes)
@@ -64,47 +77,5 @@ class Router
 
         call_user_func_array([$obj,$method], $parameters);
 
-    }
-
-    public function redirect($uri,$routes)
-    {
-        // var_dump($routes);
-        if(array_key_exists($uri, $routes)){
-
-            $data =  $routes[$uri];
-
-            $data = explode('@', $data); //explode the total route
-
-            $method = $data[1]; //get method name
-
-            $url = $data[0]; //get path of the controller
-
-            $controller = explode('/', $url);
-            $controller_class = explode('.',$controller[1]);
-            //echo $controller_class[0];
-            require './app/Controllers/'.$controller_class[0].'.php';
-
-            // create new instance of matched controller
-            $obj = new $controller_class[0];
-
-            // check to see if the existing URI has some parameters
-
-            $uri = explode('/', $uri); //explode entire URI to get the parameter if passed
-
-            $parameters = [];
-
-
-            foreach (array_slice($uri,1) as $value) {
-
-                $parameters[] = $value;
-            }
-
-
-            call_user_func_array([$obj,$method], $parameters);
-
-        }else{
-            echo "Route Not found";
-
-        }
     }
 }

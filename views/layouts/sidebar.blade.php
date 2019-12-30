@@ -31,6 +31,17 @@
                     <p>Tasks</p>
                 </a>
             </li>
+            <li class="nav-item {{active('users')}}">
+                <a class="nav-link" href="/users">
+                    <i class="material-icons">dashboard</i>
+                    <p>Users</p>
+                </a>
+            </li> <li class="nav-item {{active('tasks')}}">
+                <a class="nav-link" href="/payroll">
+                    <i class="material-icons">dashboard</i>
+                    <p>Payroll</p>
+                </a>
+            </li>
             <!-- your sidebar here -->
         </ul>
     </div>

@@ -1,12 +1,8 @@
 <?php
-date_default_timezone_set('Asia/Kathmandu');
+
 require('bootstrap.php');
-// require 'router.php';
+use \Pecee\SimpleRouter\SimpleRouter as Route;
+Route::setDefaultNamespace('\App\Controllers');
+require 'routes.php';
+Route::start();
 
-
-require_once('routes.php');
-
-//$driver = getenv('DBDRIVER');
-
-//$routes = 'routes.php';
-//Router::load($routes);
