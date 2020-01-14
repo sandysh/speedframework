@@ -2,9 +2,9 @@
 
 @section('content')
     <nav aria-label="breadcrumb" role="navigation">
-        <ol class="breadcrumb bg-white d-flex flex-row" >
-            <li class=" align-items-start breadcrumb-item active " aria-current="page">Users</li>
-            <button type="button" class="align-items-end btn btn-primary btn-sm">Add User</button>
+        <ol class="breadcrumb bg-white" >
+            <li class="col-11 breadcrumb-item active " aria-current="page">Users</li>
+            <button type="button" class="col btn btn-primary btn-sm" style="margin: 0 auto">Add User</button>
         </ol>
     </nav>
     <table class="table bg-white">
@@ -18,7 +18,6 @@
         </tr>
         </thead>
         <tbody>
-        {{dd($users)}}
         @foreach($users as $user)
             <tr>
                 <td class="text-center">{{$loop->iteration}}</td>

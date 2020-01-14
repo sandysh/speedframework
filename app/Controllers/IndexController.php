@@ -37,7 +37,7 @@ class IndexController extends Controller
     {
         $user = User::with('roles.permissions')->whereId(Session::get('user')['id'])->first();
         // return response($user->roles[0]->permissions);
-        $summaries = Attendance::where('user_id',auth()->id)->get();
+        $summaries = Attendance::where('user_id',auth()->id)->latest()->get();
         return view('index',compact('summaries'));
     }
     

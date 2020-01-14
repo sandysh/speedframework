@@ -42,6 +42,25 @@
                     <p>Payroll</p>
                 </a>
             </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="/payroll" data-toggle="dropdown" href="#0" role="button" aria-haspopup="true" aria-expanded="false">--}}
+{{--                    <i class="material-icons">dashboard</i>--}}
+{{--                    <p>Report</p>--}}
+{{--                </a>--}}
+{{--                  <div class="dropdown-menu sidebar-dropdown-menu">--}}
+{{--                    <a class="dropdown-item" href="#0">Action</a>--}}
+{{--                    <a class="dropdown-item" href="#0">Another action</a>--}}
+{{--                    <a class="dropdown-item" href="#0">Something else here</a>--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                    <a class="dropdown-item" href="#0">Separated link</a>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+            </li> <li class="nav-item {{active('reports')}}">
+                <a class="nav-link" href="/reports">
+                    <i class="material-icons">dashboard</i>
+                    <p>Report</p>
+                </a>
+            </li>
             <!-- your sidebar here -->
         </ul>
     </div>

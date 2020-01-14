@@ -16,3 +16,7 @@ Route::get('/payroll','PayrollController@index');
 /*User related routes*/
 Route::get('/users','UserController@index');
 Route::get('/user/status/{id}','UserController@changeStatus');
+
+//Report related routes
+
+Route::get('reports','ReportsController@index');
